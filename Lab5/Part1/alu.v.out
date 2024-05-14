@@ -1,0 +1,152 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002376d96a670 .scope module, "testbed" "testbed" 2 1;
+ .timescale 0 0;
+v000002376d9c0940_0 .var "DATA1_test", 7 0;
+v000002376d9c0a80_0 .var "DATA2_test", 7 0;
+v000002376d9c0b20_0 .net "RESULT_test", 7 0, v000002376d9c0d00_0;  1 drivers
+v000002376d9c1160_0 .var "SELECT_test", 2 0;
+S_000002376d96a800 .scope module, "alu_t" "ALU" 2 6, 2 65 0, S_000002376d96a670;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "DATA1";
+    .port_info 1 /INPUT 8 "DATA2";
+    .port_info 2 /INPUT 3 "SELECT";
+    .port_info 3 /OUTPUT 8 "RESULT";
+v000002376d9c0f80_0 .net "DATA1", 7 0, v000002376d9c0940_0;  1 drivers
+v000002376d9c08a0_0 .net "DATA2", 7 0, v000002376d9c0a80_0;  1 drivers
+v000002376d9c17a0_0 .net "OUTPUT_add", 7 0, L_000002376d9c1520;  1 drivers
+v000002376d9c0bc0_0 .net "OUTPUT_and", 7 0, L_000002376d9593c0;  1 drivers
+v000002376d9c13e0_0 .net "OUTPUT_forward", 7 0, L_000002376d959900;  1 drivers
+v000002376d9c1480_0 .net "OUTPUT_or", 7 0, L_000002376d959430;  1 drivers
+v000002376d9c0d00_0 .var "RESULT", 7 0;
+v000002376d9c09e0_0 .net "SELECT", 2 0, v000002376d9c1160_0;  1 drivers
+E_000002376d955f30/0 .event anyedge, v000002376d9c09e0_0, v000002376d9c15c0_0, v000002376d96a990_0, v000002376d959a30_0;
+E_000002376d955f30/1 .event anyedge, v000002376d96b7e0_0;
+E_000002376d955f30 .event/or E_000002376d955f30/0, E_000002376d955f30/1;
+S_000002376d967a70 .scope module, "add_" "ADD" 2 73, 2 41 0, S_000002376d96a800;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "DATA1";
+    .port_info 1 /INPUT 8 "DATA2";
+    .port_info 2 /OUTPUT 8 "RESULT";
+v000002376d959140_0 .net "DATA1", 7 0, v000002376d9c0940_0;  alias, 1 drivers
+v000002376d9677c0_0 .net "DATA2", 7 0, v000002376d9c0a80_0;  alias, 1 drivers
+v000002376d959a30_0 .net "RESULT", 7 0, L_000002376d9c1520;  alias, 1 drivers
+L_000002376d9c1520 .delay 8 (2,2,2) L_000002376d9c1520/d;
+L_000002376d9c1520/d .arith/sum 8, v000002376d9c0a80_0, v000002376d9c0940_0;
+S_000002376d967c00 .scope module, "and_" "AND" 2 74, 2 53 0, S_000002376d96a800;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "DATA1";
+    .port_info 1 /INPUT 8 "DATA2";
+    .port_info 2 /OUTPUT 8 "RESULT";
+L_000002376d9593c0/d .functor AND 8, v000002376d9c0a80_0, v000002376d9c0940_0, C4<11111111>, C4<11111111>;
+L_000002376d9593c0 .delay 8 (1,1,1) L_000002376d9593c0/d;
+v000002376d967d90_0 .net "DATA1", 7 0, v000002376d9c0940_0;  alias, 1 drivers
+v000002376d967e30_0 .net "DATA2", 7 0, v000002376d9c0a80_0;  alias, 1 drivers
+v000002376d96a990_0 .net "RESULT", 7 0, L_000002376d9593c0;  alias, 1 drivers
+S_000002376d96b650 .scope module, "forward_" "FORWARD" 2 72, 2 47 0, S_000002376d96a800;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "DATA2";
+    .port_info 1 /OUTPUT 8 "RESULT";
+L_000002376d959900/d .functor BUFZ 8, v000002376d9c0a80_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_000002376d959900 .delay 8 (1,1,1) L_000002376d959900/d;
+v000002376d96aa30_0 .net "DATA2", 7 0, v000002376d9c0a80_0;  alias, 1 drivers
+v000002376d96b7e0_0 .net "RESULT", 7 0, L_000002376d959900;  alias, 1 drivers
+S_000002376d96b880 .scope module, "or_" "OR" 2 75, 2 59 0, S_000002376d96a800;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "DATA1";
+    .port_info 1 /INPUT 8 "DATA2";
+    .port_info 2 /OUTPUT 8 "RESULT";
+L_000002376d959430/d .functor OR 8, v000002376d9c0a80_0, v000002376d9c0940_0, C4<00000000>, C4<00000000>;
+L_000002376d959430 .delay 8 (1,1,1) L_000002376d959430/d;
+v000002376d96ba10_0 .net "DATA1", 7 0, v000002376d9c0940_0;  alias, 1 drivers
+v000002376d932ce0_0 .net "DATA2", 7 0, v000002376d9c0a80_0;  alias, 1 drivers
+v000002376d9c15c0_0 .net "RESULT", 7 0, L_000002376d959430;  alias, 1 drivers
+    .scope S_000002376d96a800;
+T_0 ;
+    %wait E_000002376d955f30;
+    %load/vec4 v000002376d9c09e0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 3;
+    %cmp/u;
+    %jmp/1 T_0.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 3;
+    %cmp/u;
+    %jmp/1 T_0.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 3;
+    %cmp/u;
+    %jmp/1 T_0.2, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 3;
+    %cmp/u;
+    %jmp/1 T_0.3, 6;
+    %jmp T_0.4;
+T_0.0 ;
+    %load/vec4 v000002376d9c13e0_0;
+    %store/vec4 v000002376d9c0d00_0, 0, 8;
+    %jmp T_0.4;
+T_0.1 ;
+    %load/vec4 v000002376d9c17a0_0;
+    %store/vec4 v000002376d9c0d00_0, 0, 8;
+    %jmp T_0.4;
+T_0.2 ;
+    %load/vec4 v000002376d9c0bc0_0;
+    %store/vec4 v000002376d9c0d00_0, 0, 8;
+    %jmp T_0.4;
+T_0.3 ;
+    %load/vec4 v000002376d9c1480_0;
+    %store/vec4 v000002376d9c0d00_0, 0, 8;
+    %jmp T_0.4;
+T_0.4 ;
+    %pop/vec4 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_000002376d96a670;
+T_1 ;
+    %vpi_call 2 10 "$monitor", "TIME = %g  DATA1 = %b, DATA2 = %b, SELECT = %b, RESULT = %b", $time, v000002376d9c0940_0, v000002376d9c0a80_0, v000002376d9c1160_0, v000002376d9c0b20_0 {0 0 0};
+    %vpi_call 2 11 "$dumpfile", "ALU.vcd" {0 0 0};
+    %vpi_call 2 12 "$dumpvars", 32'sb00000000000000000000000000000000, S_000002376d96a670 {0 0 0};
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v000002376d9c0940_0, 0, 8;
+    %pushi/vec4 2, 0, 8;
+    %store/vec4 v000002376d9c0a80_0, 0, 8;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v000002376d9c1160_0, 0, 3;
+    %delay 6, 0;
+    %pushi/vec4 3, 0, 8;
+    %store/vec4 v000002376d9c0940_0, 0, 8;
+    %pushi/vec4 4, 0, 8;
+    %store/vec4 v000002376d9c0a80_0, 0, 8;
+    %pushi/vec4 1, 0, 3;
+    %store/vec4 v000002376d9c1160_0, 0, 3;
+    %delay 7, 0;
+    %pushi/vec4 4, 0, 8;
+    %store/vec4 v000002376d9c0940_0, 0, 8;
+    %pushi/vec4 5, 0, 8;
+    %store/vec4 v000002376d9c0a80_0, 0, 8;
+    %pushi/vec4 2, 0, 3;
+    %store/vec4 v000002376d9c1160_0, 0, 3;
+    %delay 6, 0;
+    %pushi/vec4 6, 0, 8;
+    %store/vec4 v000002376d9c0940_0, 0, 8;
+    %pushi/vec4 7, 0, 8;
+    %store/vec4 v000002376d9c0a80_0, 0, 8;
+    %pushi/vec4 3, 0, 3;
+    %store/vec4 v000002376d9c1160_0, 0, 3;
+    %delay 6, 0;
+    %vpi_call 2 35 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "alu.v";
